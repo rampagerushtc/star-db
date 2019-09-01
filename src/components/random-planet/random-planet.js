@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import SwapiService from '../../services/swapi-service'
+import Spinner from '../spinner';
 
 import './random-planet.css';
 
 export default class RandomPlanet extends Component {
     swapiService = new SwapiService();
     state = {
-        planet: {}
+        planet: {},
+        loading: true
     };
     constructor() {
         super();
@@ -14,7 +16,10 @@ export default class RandomPlanet extends Component {
     }
 
 onPlanetLoaded = (planet) => {
-    this.setState({planet});
+    this.setState({
+        planet, 
+        loading: false
+    });
 }
 
 
@@ -24,15 +29,35 @@ onPlanetLoaded = (planet) => {
             .getPlanet(id)
             .then(this.onPlanetLoaded);
     }
-    render() {
-        const { planet: { name, population, rotationPeriod, diameter } } = this.state;
 
+
+
+    render() {
+        const { planet, loading } = this.state;
+
+        const spinner = loading ? <Spinner /> : null
+        const content = !loading ? <PlanetView planet={planet}/> : null
+       
         return (
             <div className="col-md-6">
                 <div className="random-planet jumbotron rounded">
-                    <img alt="planet" className="planet-image"
-                        src={`https://starwars-visualguide.com/assets/img/planets/${ this.state.planet.id }.jpg`}></img>
+                    {spinner}
+                    {content}
+                </div>
+            </div>
 
+        )
+    }
+}
+
+const PlanetView = ({planet}) => {
+
+    const { id, name, population, rotationPeriod, diameter } = planet;
+
+    return (
+        <React.Fragment>
+            <img  className="planet-image" alt="planet"
+                        src={`https://starwars-visualguide.com/assets/img/planets/${ id }.jpg`}></img>
                     <div>
                         <h4>{name}</h4>
                         <ul className="list-group list-group-flush">
@@ -50,9 +75,6 @@ onPlanetLoaded = (planet) => {
                             </li>
                         </ul>
                     </div>
-                </div>
-            </div>
-
-        )
-    }
+        </React.Fragment>
+    )
 }
