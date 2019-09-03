@@ -26,7 +26,8 @@ export default class RandomPlanet extends Component {
 
     onError = (err) => {
         this.setState( {
-            error: true
+            error: true,
+            loading: false
         })
     }
     updatePlanet() {
@@ -42,13 +43,15 @@ export default class RandomPlanet extends Component {
     render() {
         const { planet, loading, error } = this.state;
 
+        const hasData = !(loading || error);
         const errorMessage = error ? <ErrorIndicator /> : null;
         const spinner = loading ? <Spinner /> : null
-        const content = !loading ? <PlanetView planet={planet} /> : null
+        const content = hasData ? <PlanetView planet={planet} /> : null
 
         return (
             <div className="col-md-6">
                 <div className="random-planet jumbotron rounded">
+                    {errorMessage}
                     {spinner}
                     {content}
                 </div>
