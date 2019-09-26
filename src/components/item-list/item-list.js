@@ -12,7 +12,7 @@ export default class ItemList extends Component {
 
   componentDidMount() {
 
-    const { getData } = this.props
+    const { getData } = this.props;
 
     getData()
       .then((itemList) => {
@@ -23,12 +23,14 @@ export default class ItemList extends Component {
   }
 
   renderItems(arr) {
-    return arr.map(({ id, name }) => {
+    return arr.map(( item ) => {
+      const { id } = item;
+      const label = this.props.renderItem(item);
       return (
         <li className="list-group-item"
           key={id}
-          onClick={() => this.props.onItemSelected(id)}          >
-          {name}
+          onClick={() => this.props.onItemSelected(id)}>
+          {label}
         </li>
       );
     });
@@ -43,13 +45,12 @@ export default class ItemList extends Component {
           <li className="list-group-item">
             <Spinner />
           </li>
-
         </ul>
       )
     }
 
     const people = this.renderItems(itemList);
-
+    console.log(people);
     return (
       <ul className="item-list list-group">
         {people}
