@@ -55,7 +55,7 @@ export default class App extends Component {
 
                 <PeoplePage getData={this.swapiService.getAllPeople} />
 
-                <div className="row mb2">
+                {/* <div className="row mb2">
                     <div className="col-md-6">
                         <ItemList onItemSelected={this.onPersonSelected}
                             getData={this.swapiService.getAllStarships}
@@ -65,7 +65,7 @@ export default class App extends Component {
                         <PersonDetails personId={this.state.selectedPerson}
                                         renderItem={(item)=> item.name} />
                     </div>
-                </div>
+                </div> */}
 
 
             </div>
