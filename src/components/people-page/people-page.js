@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ItemList from '../item-list';
-import PersonDetails from '../person-details';
+import ItemDetails from '../item-details';
 import ErrorIndicator from '../error-indicator';
 import Row from '../row';
 
@@ -43,7 +43,7 @@ export default class PeoplePage extends Component {
         );
 
         const personDetails = (
-            <PersonDetails personId={this.state.selectedPerson} />
+            <ItemDetails item={this.state.selectedPerson} />
         );
 
         return (
