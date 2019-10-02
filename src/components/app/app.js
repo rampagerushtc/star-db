@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../header';
 import PeoplePage from '../people-page';
 import ItemList from '../item-list';
-import ItemDetails from '../item-details';
+import ItemDetails, { Record } from '../item-details';
 import RandomPlanet from '../random-planet';
 import './app.css';
 import ErrorButton from '../error-button';
@@ -11,7 +11,6 @@ import SwapiService from '../../services/swapi-service';
 import Row from '../row';
 
 
-//import PlanetDetails from '../planet-details';
 
 export default class App extends Component {
 
@@ -33,7 +32,7 @@ export default class App extends Component {
 
     componentDidCatch() {
         this.setState({ hasError: true })
-    }
+    } 
 
 
     render() {
@@ -43,19 +42,27 @@ export default class App extends Component {
         }
         const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
 
-        const {getPerson, getStarship } = this.swapiService;
+        const {getPerson,
+                getStarship,
+                getPersonImage,
+                getStarshipImage} = this.swapiService;
 
         const personDetails = (
             <ItemDetails 
                 itemId={11}
-                getData={getPerson}/>
+                getData={getPerson}
+                getImageUrl={getPersonImage}/>
 
         ) ;
 
         const starshipDetails = (
             <ItemDetails 
                 itemId={5}
-                getData={getStarship} />
+                getData={getStarship}
+                getImageUrl={getStarshipImage}>
+                    <Record field="gender" label="Gender" />
+                    <Record field="eyeColor" label="Eye Color" />
+            </ItemDetails>
         );
 
         return (

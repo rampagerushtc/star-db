@@ -5,13 +5,27 @@ import SwapiService from '../../services/swapi-service';
 import Spinner from '../spinner';
 import ErrorButton from '../error-button';
 
+const Record = ({item, field, label}) => {
+  return (
+    <li className="list-group-item">
+    <span className="term">{label}</span>
+    <span>{item[field]}</span>
+  </li>
+  )
+}
+
+export {
+  Record
+}
+
 export default class ItemDetails extends Component {
 
   swapiService = new SwapiService();
 
   state = {
     itemId: null,
-    loading: true
+    loading: true,
+    image: null
   };
 
   componentDidMount() {
@@ -25,14 +39,14 @@ export default class ItemDetails extends Component {
   }
 
   updateItem() {
-    const { itemId, getData} = this.props;
+    const { itemId, getData, getImageUrl} = this.props;
     if (!itemId) {
       return;
     }
 
     getData(itemId)
         .then((itemId) => {
-        this.setState({ itemId, loading: false });
+        this.setState({ itemId, loading: false, image: getImageUrl(itemId) });
       })
   }
 
@@ -40,7 +54,8 @@ export default class ItemDetails extends Component {
     console.log(`render()`);
     console.log(this.state);
     const spinner = this.state.loading ? <Spinner /> : null;
-    const itemView = !this.state.loading ? <ItemView itemId={this.state.itemId} /> : null;
+    const itemView = !this.state.loading ? <ItemView itemId={this.state.itemId}
+                                                     image={this.state.image} /> : null;
     return (
       <div className="item-details card">
         {itemView}
@@ -51,7 +66,7 @@ export default class ItemDetails extends Component {
 }
 
 
-const ItemView = ({ itemId }) => {
+const ItemView = ({ itemId, image }) => {
   console.log(111, itemId);
   if (!itemId) {
     return <span>Select a itemId from a list</span>;
@@ -60,7 +75,7 @@ const ItemView = ({ itemId }) => {
   return (
     <React.Fragment>
       <img alt="planet" className="item-image img-fluid"
-        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
+        src={image} />
 
       <div className="card-body">
         <h4>{name}</h4>
