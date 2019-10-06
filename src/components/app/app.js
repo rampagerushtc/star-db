@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from '../header';
-import PeoplePage from '../people-page';
 import ItemList from '../item-list';
 import ItemDetails, { Record } from '../item-details';
 import RandomPlanet from '../random-planet';
