@@ -6,7 +6,7 @@
 }
 
 .item-details .item-image {
-  width: 20%;
+  max-width: 30%;
   border-radius: 10px;
 }
 
@@ -16,4 +16,8 @@
 
 .item-details .list-group-item .term{
   margin-right: .5rem;
+}
+
+.item-details button {
+  margin-top: 5px;
 }

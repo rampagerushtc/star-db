@@ -31,16 +31,11 @@ export default class PeoplePage extends Component {
             )
         }
 
-        const itemList = (
-            <ItemList
-                onItemSelected={this.onPersonSelected}
-                getData={getData} >
-
-                {(i) => (
-                    `${i.name} (${i.birthYear})`
-                )}
-            </ItemList>
-        );
+    const itemList = (
+        <ItemList
+          onItemSelected={this.onPersonSelected}
+          getData={this.swapiService.getAllPeople}>{3131}</ItemList>
+      );
 
         const personDetails = (
             <ItemDetails item={this.state.selectedPerson} />
