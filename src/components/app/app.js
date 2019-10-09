@@ -9,6 +9,15 @@ import ErrorIndicator from '../error-indicator';
 import SwapiService from '../../services/swapi-service';
 import Row from '../row';
 
+import {
+    PersonDetails,
+    PlanetDetails,
+    StarshipDetails,
+    PersonList,
+    PlanetList,
+    StarshipList
+} from '../sw-components';
+
 export default class App extends Component {
 
     swapiService = new SwapiService();
@@ -75,6 +84,20 @@ export default class App extends Component {
                     left={personDetails}
                     right={starshipDetails}
                 />
+
+                <PersonDetails itemId={11} />
+                <PlanetDetails itemId={2} />
+                <StarshipDetails itemId={5} />
+
+                <PersonList>
+                    { ({name})=> <span>{name}</span> }
+                </PersonList>
+                <StarshipList>
+                    { ({name})=> <span>{name}</span> }
+                </StarshipList>
+                <PlanetList>
+                    { ({name})=> <span>{name}</span> }
+                </PlanetList>
 
                 {/* <div className="row mb2">
                     <div className="col-md-6">
