@@ -37,7 +37,8 @@ export default class ItemDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.itemId !== prevProps.itemId) {
+    if (this.props.itemId !== prevProps.itemId ||
+        this.props.getData !== prevProps.getData) {
       this.updateItem();
     }
   }
@@ -60,14 +61,13 @@ export default class ItemDetails extends Component {
                                                      item={this.state.item}
       image={this.state.image} /> : null;
     return (
-      <div className="item-details card">
+      <div>
         {itemView}
         {spinner}
       </div>
     )
   }
 }
-
 
 const ItemView = ({ item, image, children }) => {
   if (!item) {

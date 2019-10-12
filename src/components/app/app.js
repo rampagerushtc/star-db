@@ -24,10 +24,24 @@ import './app.css';
 
 export default class App extends Component {
 
-    swapiService = new SwapiService();
+
     state = {
+        swapiService: new DummySwapiService(),
         showRandomPlanet: true,
         hasError: false
+    };
+
+    onServiceChange = () => {
+
+        this.setState(({ swapiService }) => {
+            const Service = swapiService instanceof SwapiService ?
+                DummySwapiService : SwapiService;
+
+            console.log(`Switched to ${Service}`);
+            return {
+                swapiService: new Service()
+            }
+        })
     }
 
     toggleRandomPlanet = () => {
@@ -54,12 +68,12 @@ export default class App extends Component {
             getPersonImage,
             getStarshipImage,
             getAllPeople,
-            getAllPlanets } = this.swapiService;
+            getAllPlanets } = this.state.swapiService;
 
         return (
             <div>
-                <SwapiServiceProvider value={this.swapiService} >
-                    <Header />
+                <SwapiServiceProvider value={this.state.swapiService} >
+                    <Header onServiceChange={this.onServiceChange} />
                     {planet}
                     <div className="row mb2 button-row">
                         <button className="toggle-planet btn btn-warning btn-lg"

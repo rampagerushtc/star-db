@@ -3,10 +3,12 @@
   flex-direction: row;
   padding: 1rem;
   border: 1px solid #444;
+  margin: 0 1rem 0 1rem;
 }
 
 .item-details .item-image {
-  max-width: 30%;
+  width: 30%;
+  height: 30%;
   border-radius: 10px;
 }
 
