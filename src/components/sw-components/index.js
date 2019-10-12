@@ -1,8 +1,7 @@
-import {
-    PersonDetails,
-    PlanetDetails,
-    StarshipDetails
-} from './details';
+import PersonDetails from '../sw-components/person-details';
+import StarshipDetails from '../sw-components/starship-details';
+import PlanetDetails from '../sw-components/planet-details';
+
 
 import {
     PersonList,
