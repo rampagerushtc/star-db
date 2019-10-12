@@ -8,6 +8,7 @@ import ErrorIndicator from '../error-indicator';
 import SwapiService from '../../services/swapi-service';
 import DummySwapiService from '../../services/dummy-swapi-service';
 import Row from '../row';
+import { PeoplePage } from '../pages';
 
 
 import { SwapiServiceProvider } from '../swapi-service-context';
@@ -63,10 +64,7 @@ export default class App extends Component {
                     <Header onServiceChange={this.onServiceChange} />
                     {planet}
 
-                    <Row 
-                        left={<PersonList />}
-                        right={<PersonDetails itemId={11} />}
-                    />
+                    <PeoplePage />
                     <Row 
                         left={<PlanetList />}
                         right={<PlanetDetails itemId={2} />}
