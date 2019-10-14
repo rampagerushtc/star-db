@@ -4,7 +4,7 @@ import Row from '../row';
 
 export default class PeoplePage extends Component {
     state = {
-        selectedItem: null
+        selectedItem: 1
     }
 
     onItemSelected = (selectedItem) => {

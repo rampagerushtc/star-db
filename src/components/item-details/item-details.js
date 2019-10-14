@@ -73,7 +73,7 @@ const ItemView = ({ item, image, children }) => {
   if (!item) {
     return <span>Select a itemId from a list</span>;
   }
-  const { id, name, gender, birthYear, eyeColor } = item;
+  const { name } = item;
   return (    
     <div className="item-details card">
       <img alt="item" className="item-image"
