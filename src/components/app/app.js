@@ -27,8 +27,6 @@ export default class App extends Component {
         this.setState(({ swapiService }) => {
             const Service = swapiService instanceof SwapiService ?
                 DummySwapiService : SwapiService;
-
-            console.log(`Switched to ${Service}`);
             return {
                 swapiService: new Service()
             }
@@ -56,7 +54,7 @@ export default class App extends Component {
                                         exact />
                         <Route path="/people" render={()=><h2>People</h2>} 
                                         exact />
-                        <Route path="/people" component= {PeoplePage} />
+                        <Route path="/people/:id?" component= {PeoplePage} />
                         <Route path="/planets" render={()=><h2>Planets</h2>} 
                                         exact />
                         <Route path="/planets" component= {PlanetsPage} />
